@@ -71,9 +71,7 @@ print '>>>Creating paper wallet image file..'
 pdf=FPDF('P','mm', 'A4')
 pdf.add_page()
 pdf.set_font('Times', '', 20)
-
 pdf.image('light2.jpg',0,0,210,297)      #dimensions of a4 in mm
-
 pdf.cell (0, 10,str(mkeys)+'-of-'+str(nkeys)+': multisignature bitcoin paper wallet',1,1,'C')
 pdf.set_font_size(13)
 pdf.cell(0, 32, 'multisig address: ' + addr_multi,1,1)
@@ -85,6 +83,7 @@ img.save('qrcode.jpg')
 h_qr = 21
 pdf.image('qrcode.jpg',169,h_qr,30,30)
 h_qr +=1
+
 for x in range(len(priv)):
     h_qr+=31
     pdf.cell(0,31,str(x+1)+': '+wif[x],1,1,'L')
@@ -94,11 +93,13 @@ for x in range(len(priv)):
     img.save('qrcode'+str(x)+'.jpg')
     pdf.image('qrcode'+str(x)+'.jpg',169,h_qr,30,29)
     os.remove('qrcode'+str(x)+'.jpg')                       # needs fix for the 2nd page after 7 qr's..
+    if x == 6:                                           #wrapped onto the 2nd page..
+        pdf.add_page()
+        pdf.image('light2.jpg',0,0,210,297)
+        h_qr = -20
 
-pdf.multi_cell(0, 10, 'multisig script: ' + script,1,1)
 pdf.set_font('Times',"",10)
-
-
+pdf.multi_cell(0, 10, 'multisig script: ' + script,1,1)
 os.remove('qrcode.jpg')
 pdf.output('mspw.pdf','F')
 
