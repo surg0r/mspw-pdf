@@ -5,7 +5,6 @@ from qrcode import *
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
-import textwrap
 from fpdf import FPDF
 
 #return a qrcode img for a bitcoin address
