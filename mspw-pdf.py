@@ -1,5 +1,5 @@
 # Create a bitcoin multisignature paper wallet with variable m-of-n settings..
-# fpdf only allows import of images as files, therefore slightly cumbersome file writing..
+# fpdf only allows import of images as files, therefore slightly cumbersome file writing...
 from bitcoin import *
 from qrcode import *
 from PIL import Image
@@ -91,7 +91,7 @@ for x in range(len(priv)):
     img.paste(im,(0,0))
     img.save('qrcode'+str(x)+'.jpg')
     pdf.image('qrcode'+str(x)+'.jpg',169,h_qr,30,29)
-    os.remove('qrcode'+str(x)+'.jpg')                       
+    os.remove('qrcode'+str(x)+'.jpg')
     if x == 6:                                           #wrapped onto the 2nd page..
         pdf.add_page()
         pdf.image('light2.jpg',0,0,210,297)
