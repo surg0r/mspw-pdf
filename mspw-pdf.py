@@ -91,7 +91,7 @@ for x in range(len(priv)):
     img.paste(im,(0,0))
     img.save('qrcode'+str(x)+'.jpg')
     pdf.image('qrcode'+str(x)+'.jpg',169,h_qr,30,29)
-    os.remove('qrcode'+str(x)+'.jpg')                       # needs fix for the 2nd page after 7 qr's..
+    os.remove('qrcode'+str(x)+'.jpg')                       
     if x == 6:                                           #wrapped onto the 2nd page..
         pdf.add_page()
         pdf.image('light2.jpg',0,0,210,297)
