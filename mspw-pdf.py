@@ -74,7 +74,7 @@ pdf.set_font('Times', '', 20)
 
 pdf.image('light2.jpg',0,0,210,297)      #dimensions of a4 in mm
 
-pdf.cell (0, 10,str(mkeys)+'-of- '+str(nkeys)+': multisignature bitcoin paper wallet',1,1,'C')
+pdf.cell (0, 10,str(mkeys)+'-of-'+str(nkeys)+': multisignature bitcoin paper wallet',1,1,'C')
 pdf.set_font_size(13)
 pdf.cell(0, 32, 'multisig address: ' + addr_multi,1,1)
 
