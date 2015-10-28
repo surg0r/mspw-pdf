@@ -7,6 +7,7 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from fpdf import FPDF
 
+jpeg = 'light2.jpg'
 #return a qrcode img for a bitcoin address
 def qrc(address):
     qr = QRCode(box_size=3, border=3,error_correction=ERROR_CORRECT_Q)
@@ -14,6 +15,43 @@ def qrc(address):
     qrim = qr.make_image()
     qrim_w, qrim_h = qrim.size
     return qrim, qrim_h, qrim_w
+
+class NewPdf():         #create a fragment of multisig key on a single page..
+    def __init__(self,n):
+        self=FPDF('P','mm','A4')
+        self.add_page()
+        self.set_font('Times', '', 20)
+        self.image(jpeg,0,0,210,297)
+        self.multi_cell(0, 10,str(mkeys) + '-of-' +str(nkeys) +' : multisignature bitcoin paper wallet\ncontains private key number '+str(x+1)+' of '+str(nkeys),1,1,'C')
+
+        self.set_font_size(16)
+        self.cell(0, 130, 'multisig address: ' + addr_multi,0,1,'C')
+        im, im_h, im_w = qrc(addr_multi)
+        img = Image.new( 'RGB', (im_w,im_h), "white")
+        img.paste(im,(0,0))
+        ran=random_key()
+        img.save('qrcode' + ran + '.jpg')
+        self.image('qrcode' + ran + '.jpg',80,36,50,50)
+        os.remove('qrcode'+ ran +'.jpg')
+
+        self.cell(0,20,wif[n],0,1,'C')
+        im, im_h, im_w = qrc(wif[n])
+        img = Image.new( 'RGB', (im_w,im_h), "white")
+        img.paste(im,(0,0))
+        ran=random_key()
+        img.save('qrcode'+ ran +'.jpg')
+        self.image('qrcode'+ ran +'.jpg',80,110,50,50)
+        os.remove('qrcode'+ ran +'.jpg')
+
+
+        self.set_font('Times',"",10)
+        self.multi_cell(0, 10, 'multisig script: ' + script,1,1)
+
+
+
+        self.output('mspw'+str(n+1)+'.pdf','F')
+        self.close()
+
 
 print '>>> Multi-signature paper wallet creator <<<'
 print 'How many keyholders for the multisignature address(n)?'
@@ -70,7 +108,7 @@ print '>>>Creating paper wallet image file..'
 pdf=FPDF('P','mm', 'A4')
 pdf.add_page()
 pdf.set_font('Times', '', 20)
-pdf.image('light2.jpg',0,0,210,297)      #dimensions of a4 in mm
+pdf.image(jpeg,0,0,210,297)      #dimensions of a4 in mm
 pdf.cell (0, 10,str(mkeys)+'-of-'+str(nkeys)+': multisignature bitcoin paper wallet',1,1,'C')
 pdf.set_font_size(13)
 pdf.cell(0, 32, 'multisig address: ' + addr_multi,1,1)
@@ -101,4 +139,12 @@ pdf.set_font('Times',"",10)
 pdf.multi_cell(0, 10, 'multisig script: ' + script,1,1)
 os.remove('qrcode.jpg')
 pdf.output('mspw.pdf','F')
+
+print 'Do you want wallet file in distributable fragments?(enter for yes, all other input = no)'
+dist=raw_input()
+if not dist:
+    print '>>>Producing separate wallets for each private key'
+    for x in range(len(priv)):
+        NewPdf(x)     #instantiate class for each new pdf and fill..
+
 
