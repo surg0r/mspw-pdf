@@ -18,7 +18,9 @@ all private keys and qr codes, and the multisignature script. PDF allows the scr
 Example output is contained in the mspw.pdf file here on github.
 
 Todo: 
+
 1) minor formatting error if n > 10 as goes onto third page.
-2) creating separate pages for each multi signature private key
-3) allowing bip38 functionality for printed private keys..(m of n with bip38 encrypted private keys used)
-4) finish a spending script that comes with it..:)
+
+2) allowing bip38 functionality for printed private keys..(m of n with bip38 encrypted private keys used)
+
+3) finish a spending script that comes with it..:)
