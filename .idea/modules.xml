@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../bip38/.idea/bip38.iml" filepath="$PROJECT_DIR$/../bip38/.idea/bip38.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../hc/.idea/hc.iml" filepath="$PROJECT_DIR$/../hc/.idea/hc.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/mspw-pdf.iml" filepath="$PROJECT_DIR$/.idea/mspw-pdf.iml" />
       <module fileurl="file://$PROJECT_DIR$/../multisig-spend/.idea/multisig-spend.iml" filepath="$PROJECT_DIR$/../multisig-spend/.idea/multisig-spend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../parse/.idea/parse.iml" filepath="$PROJECT_DIR$/../parse/.idea/parse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pydb/.idea/pydb.iml" filepath="$PROJECT_DIR$/../pydb/.idea/pydb.iml" />
     </modules>
   </component>
 </project>
