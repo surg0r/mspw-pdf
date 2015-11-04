@@ -13,7 +13,7 @@ bitcoin address, m is the number of keys required to spend the funds). The scrip
 can be randomly generated or provided by the user (or a combination of the two).
 
 The script then creates an A4 pdf containing the details of m-of-n, the multisignature bitcoin address and qr code, 
-all private keys and qr codes, and the multisignature script. PDF allows the script to be copy and pasted easily.
+all private keys and qr codes, and the multisignature script. The script then gives the option to create distributable individual A4 pdf files for each private key which contains m-of-n details, the private key, multi-signature address and multi-sig script, with of course QR codes for importation purposes. Use of PDF allows the script to be copy and pasted easily from digital cold storage.
 
 Example output is contained in the mspw.pdf file here on github.
 
